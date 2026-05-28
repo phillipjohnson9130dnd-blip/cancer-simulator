@@ -1,0 +1,21 @@
+{
+  "name": "cancer-survivor-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "tunnel": "C:\\PROGRA~2\\cloudflared\\cloudflared.exe tunnel --url http://localhost:5173",
+    "share": "concurrently -n server,client,tunnel -c blue,green,magenta \"npm run server\" \"npm run client\" \"npm run tunnel\"",
+    "build": "npm install --prefix client && npm install --prefix server && npm run build --prefix client",
+    "start": "node server/index.js",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

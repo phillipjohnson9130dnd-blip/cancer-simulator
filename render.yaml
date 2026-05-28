@@ -1,0 +1,17 @@
+# Render Blueprint — single web service that builds the React app and serves it
+# (plus the API) from one Node process. See https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: cancer-survivor-simulator
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: LLM_PROVIDER
+        value: groq
+      # Set this as a SECRET in the Render dashboard (do not commit it).
+      - key: GROQ_API_KEY
+        sync: false
